@@ -175,14 +175,14 @@ def main(image_vec):
     )
     parser.add_argument(
         "-r", "--reference_images_dir",
-        default="/home/janischl/deep-metric-learning-tsinghua-dogs/data/train",
+        default="/home/janischl/Dataset/imagenet/images/valid",
         type=str,
         required=False,
         help="Directory to reference images"
     )
     parser.add_argument(
         "-c", "--checkpoint_path",
-        default= "/home/janischl/deep-metric-learning-tsinghua-dogs/src/checkpoints/softtriple-resnet50/2021-04-07_15-08-55/epoch4-iter1000-map99.07.pth",
+        default= "/home/janischl/deep-metric-learning-tsinghua-dogs/src/checkpoints/softtriple-resnet50/2021-04-11_21-31-31/epoch28-iter31000-map99.49.pth",
         type=str,
         required=False,
         help="Path to model's checkpoint."

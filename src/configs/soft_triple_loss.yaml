@@ -4,9 +4,9 @@
     # Size of images to be resized before training
     "image_size": 448,
     # Size of output embedding vector
-    "embedding_size": 256,
+    "embedding_size": 128,
     # Batch size
-    "batch_size": 96,
+    "batch_size": 24,
     # Numbers of centers for each class
     "n_centers_per_class": 5,
     # lambda is for calculating distance probability. See section 3.2 in the paper for more detail.
