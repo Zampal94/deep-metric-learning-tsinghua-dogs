@@ -175,14 +175,14 @@ def main(image_vec):
     )
     parser.add_argument(
         "-r", "--reference_images_dir",
-        default="/home/janischl/Dataset/imagenet/images/valid",
+        default= "/home/janischl/ssn-pytorch/train_berlin_flip"  ,       #    "/home/janischl/deep-metric-learning-tsinghua-dogs/data/valid"
         type=str,
         required=False,
         help="Directory to reference images"
     )
     parser.add_argument(
         "-c", "--checkpoint_path",
-        default= "/home/janischl/deep-metric-learning-tsinghua-dogs/src/checkpoints/softtriple-resnet50/2021-04-11_21-31-31/epoch28-iter31000-map99.49.pth",
+        default= "/home/janischl/deep-metric-learning-tsinghua-dogs/src/checkpoints/softtriple-resnet50/2021-04-20_18-22-59/epoch21-iter23000-map99.74.pth",
         type=str,
         required=False,
         help="Path to model's checkpoint."
@@ -190,7 +190,7 @@ def main(image_vec):
     parser.add_argument(
         "-k", "--k_queries",
         type=int,
-        default=3,
+        default=5,
         help="Number of queries"
     )
     parser.add_argument(
@@ -288,8 +288,10 @@ def main(image_vec):
         end = time.time()
         logging.info(f"Done querying {args['k_queries']} queries: {end - start} seconds")
         logging.info(f"Top {args['k_queries']}: {pformat(retrieved_image_paths)}")
-        retrieved_distances_vec.append(retrieved_labels)
-        retrieved_image_paths_vec.append(retrieved_image_paths[0])
+        #print (retrieved_distances)
+        
+        retrieved_distances_vec.append(retrieved_distances)
+        retrieved_image_paths_vec.append(retrieved_image_paths)
     
 
     # Visualize
