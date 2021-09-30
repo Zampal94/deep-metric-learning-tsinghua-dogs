@@ -148,7 +148,7 @@ def visualize_query(query_image_path: str,
 
         retrieved_image: np.ndarray = cv2.imread(retrieved_image_paths[i], cv2.IMREAD_COLOR)
         retrieved_image = cv2.resize(cv2.cvtColor(retrieved_image, cv2.COLOR_BGR2RGB), image_size)
-        distance: float = round(retrieved_distances[i], 4)
+        distance: float = round(retrieved_distances[i], 6)
         axs[row, col].imshow(retrieved_image)
 
         title: str = f"Top {i + 1}\nDistance: {distance}"

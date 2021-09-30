@@ -60,8 +60,8 @@ def main(args: Dict[str, Any]):
         embedding_size=config["embedding_size"],
         pretrained=config["pretrained"]
     ))
-    checkpoint = torch.load("/home/janischl/deep-metric-learning-tsinghua-dogs/src/checkpoints/softtriple-resnet50/2021-04-11_21-31-31/epoch37-iter40000-map99.58.pth")
-    model.module.load_state_dict(checkpoint['model_state_dict'])
+    #checkpoint = torch.load("/home/janischl/deep-metric-learning-tsinghua-dogs/src/checkpoints/softtriple-resnet50/2021-04-11_21-31-31/epoch37-iter40000-map99.58.pth")
+    #model.module.load_state_dict(checkpoint['model_state_dict'])
     model = model.to(device)
     logger.info(f"Initialized model: {model}")
 
@@ -261,11 +261,11 @@ def main(args: Dict[str, Any]):
 
 
     # Visualize embeddings
-    logger.info("Calculating train embeddings for visualization...")
+    #logger.info("Calculating train embeddings for visualization...")
     log_embeddings_to_tensorboard(train_loader, model, device, writer, tag="train")
-    logger.info("Calculating reference embeddings for visualization...")
+    # logger.info("Calculating reference embeddings for visualization...")
     log_embeddings_to_tensorboard(reference_loader, model, device, writer, tag="reference")
-    logger.info("Calculating test embeddings for visualization...")
+    # logger.info("Calculating test embeddings for visualization...")
     log_embeddings_to_tensorboard(test_loader, model, device, writer, tag="test")
 
 
@@ -328,7 +328,7 @@ if __name__ == "__main__":
         "--log_frequency", type=int, default=100, help="Number of iterations to print training logs"
     )
     parser.add_argument(
-        "--validate_frequency", type=int, default=1000, help="Number of iterations to run test"
+        "--validate_frequency", type=int, default=500, help="Number of iterations to run test"
     )
     parser.add_argument(
         "--use_gpu", type=bool, default=True, help="Whether to use gpu for training"

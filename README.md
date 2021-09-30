@@ -1,7 +1,7 @@
 
 <div align="center">
     <h1>
-    Tsinghua Dogs classification with
+    Superpixel classification with
     <br>
     Deep Metric Learning
     </h1>
@@ -9,17 +9,6 @@
 
 
 # 1. Introduction
-
-## Tsinghua Dogs dataset
-Tsinghua Dogs is a fine-grained classification dataset for dogs, over 65% of whose images are collected from people's real life. Each dog breed in the dataset contains at least 200 images and a maximum of 7,449 images. For more info, see [dataset's homepage](https://cg.cs.tsinghua.edu.cn/ThuDogs/).
-
-Following is the brief information about the dataset:
-- Number of categories: 130
-- Number of training images: 65228
-- Number of validating images: 5200
-
-![](static/breed-difference.png)
-Variation in Tsinghua Dogs dataset. (a) Great Danes exhibit large variations in appearance, while (b) Norwich terriers and (c) Australian terriers are quite similar to each other. ([Source](https://cg.cs.tsinghua.edu.cn/ThuDogs))
 
 ## Deep metric learning
 Deep metric learning (DML) aims to measure the similarity among samples by training a deep neural network and a distance metric such as Euclidean distance or Cosine distance.
@@ -118,27 +107,10 @@ reference_images_dir/
 
 With above structure, you can have corresponding label for each retrieved images:
 ```sh
-CUDA_VISIBLE_DEVICES=0 PYTHONPATH=./ python src/infer.py --image_path shiba.jpeg --reference_images_dir reference_images_dir --checkpoint_path src/checkpoints/TsinghuaDogs/proxynca-resnet50.pth --labeled_folders
+CUDA_VISIBLE_DEVICES=0 PYTHONPATH=./ python src/infer.py --image_path /home/janischl/deep-metric-learning-tsinghua-dogs/data/BadNeu/Tool_14_1_2.png/14_1_2.png72_600.png --reference_images_dir /home/janischl/ssn-pytorch/train_berlin_flip --checkpoint_path /home/janischl/deep-metric-learning-tsinghua-dogs/src/checkpoints/softtriple-resnet50/2021-04-20_18-22-59_retrained_BadNeustadt/epoch1-iter1-map99.58.pth  --labeled_folders
 ```
 
-Or all images in the same folder, however, you won't have corresponding label for each retrieved image with this way:
-```sh
-reference_images_dir/
-├── Affenpinscher_00001.jpg
-├── Affenpinscher_00002.jpg
-├── ...
-├── Airedale_terrier_00156.jpg
-├── Airedale_terrier_00157.jpg
-├── ...
-├── Akita_00219.jpg
-├── Akita_00223.jpg
-├── ...
-└── Akita_00296.jpg
-```
 
-```sh
-CUDA_VISIBLE_DEVICES=0 PYTHONPATH=./ python src/infer.py --image_path shiba.jpeg --reference_images_dir reference_images_dir --checkpoint_path src/checkpoints/TsinghuaDogs/proxynca-resnet50.pth
-```
 
 # 5. Train
 ## 5.1 Install dependencies
@@ -158,7 +130,7 @@ conda install -n dml faiss-gpu cudatoolkit=10.2 -c pytorch
 pip install opencv-python tensorboard torch-summary torch_optimizer scikit-learn matplotlib seaborn requests ipdb flake8 pyyaml natsort
 ```
 
-## 5.2 Download and prepare Tsinghua Dogs dataset
+## 5.2 Download and prepare dataset
 ```sh
 PYTHONPATH=./ python src/scripts/prepare_TsinghuaDogs.py --output_dir data/
 ```

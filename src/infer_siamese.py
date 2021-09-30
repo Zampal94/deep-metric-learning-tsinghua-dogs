@@ -165,6 +165,7 @@ def visualize_query(query_image,
 
 
 def main(image_vec):
+
     parser = argparse.ArgumentParser(description="Visualizing embeddings with T-SNE")
 
     parser.add_argument(
@@ -173,16 +174,22 @@ def main(image_vec):
         required=False,
         help="Path to input image"
     )
+
+    #Set the path to the reference foldere here
+
     parser.add_argument(
         "-r", "--reference_images_dir",
-        default= "/home/janischl/ssn-pytorch/train_berlin_flip"  ,       #    "/home/janischl/deep-metric-learning-tsinghua-dogs/data/valid"
+        default= "/home/janischl/ssn-pytorch/train_berlin_flip"  ,       
         type=str,
         required=False,
         help="Directory to reference images"
     )
+
+    #Set the path to the trained model foldere here
+    
     parser.add_argument(
         "-c", "--checkpoint_path",
-        default= "/home/janischl/deep-metric-learning-tsinghua-dogs/src/checkpoints/softtriple-resnet50/2021-04-20_18-22-59/epoch21-iter23000-map99.74.pth",
+        default= "/home/janischl/deep-metric-learning-tsinghua-dogs/src/checkpoints/softtriple-resnet50/2021-04-20_18-22-59_retrained_BadNeustadt/epoch1-iter1-map99.58.pth",
         type=str,
         required=False,
         help="Path to model's checkpoint."
@@ -288,19 +295,11 @@ def main(image_vec):
         end = time.time()
         logging.info(f"Done querying {args['k_queries']} queries: {end - start} seconds")
         logging.info(f"Top {args['k_queries']}: {pformat(retrieved_image_paths)}")
-        #print (retrieved_distances)
+      
         
         retrieved_distances_vec.append(retrieved_distances)
         retrieved_image_paths_vec.append(retrieved_image_paths)
     
-
-    # Visualize
-    # visualize_query(
-    #     image, retrieved_image_paths, retrieved_distances, retrieved_labels
-    # )
-    # output_path: str = os.path.join("/home/janischl/deep-metric-learning-tsinghua-dogs/output", "infer.jpg")
-    # plt.savefig(output_path, dpi=150)
-    # logging.info(f"Plot is saved at: {output_path}")
 
     return retrieved_distances_vec, retrieved_image_paths_vec
 
